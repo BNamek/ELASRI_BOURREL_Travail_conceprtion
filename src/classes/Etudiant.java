@@ -25,7 +25,7 @@ public class Etudiant {
     public void ajouterNote(String mat,int note) throws Exception {
         //Je vérifie que la matière éxiste
         //Changement de return, car la méthode vas throw une exception
-        if (f.getCoeff(mat) == -1){
+        if (formation.getCoeff(mat) == -1){
             //Si elle n'existe pas on throw une erreur
             throw new Exception("La matière n'éxiste pas");
             //On arrete la méthode

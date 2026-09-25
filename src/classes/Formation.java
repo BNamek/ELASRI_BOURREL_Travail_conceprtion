@@ -54,10 +54,14 @@ public class Formation {
      * @param mat matière que l'on souhaite avoir son coefficient
      * @return le coefficient de la matière, si elle existe pas retourner -1
      */
+
+    // Vaut mieux Faire une exception
     public int getCoeff(String mat){
         if (!collections.containsKey(mat)){
             return -1;
         }
         return collections.get(mat);
     }
+
+    // METHODE QUI VERIFIE L'EXISTANCE D'UNE MATIERE
 }
