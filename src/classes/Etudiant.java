@@ -1,9 +1,6 @@
 package classes;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Etudiant {
     private Identite identite;
@@ -29,7 +26,6 @@ public class Etudiant {
             //Si elle n'existe pas on throw une erreur
             throw new Exception("La matière n'éxiste pas");
             //On arrete la méthode
-            return;
         }
 
         //Je vérifie que la note se situe bien entre 0 et 20
@@ -37,10 +33,9 @@ public class Etudiant {
             //Si la note n'est pas dans l'intervalle 0 et 20 on throw une erreur
             throw new Exception("La note doit etre entre 0 et 20");
             //On arrete la méthode
-            return;
         }
-
-        for(this.resultat : r){
+        Set<String> r = this.resultat.keySet();
+        for(String s : r){
 
         }
 
