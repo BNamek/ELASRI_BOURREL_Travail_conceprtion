@@ -60,34 +60,55 @@ public class Etudiant {
      * @return Un double qui est la moyenne de l'étudiant dans la matière donné
      */
     public double calculerMoyenne(String mat) throws MatiereInexistanteException, Exception {
+        double res;
+        //Verification que la matière existe
         if (!this.formation.matiereExiste(mat)) {
+            //Si la matière n'existe pas on throw une exception
             throw new MatiereInexistanteException(mat);
         }
 
+        //On crée une liste qui va contenire les notes de la matière
         ArrayList<Integer> listNote = this.resultat.get(mat);
         if (listNote.isEmpty()) {
+            //Si la liste est vide alors on throw une exception
             throw new Exception("L'étudiant n'a aucune note dans cette matière");
         }
         int somme = 0;
-
+        //Une boucle for pour parcourir la liste est l'ajouter dans la somme de toute les notes
         for (int i = 0; i < listNote.size(); i++) {
             somme += listNote.get(i);
         }
-        return (double) somme / listNote.size();
+
+        //On réalise le calcule de la moyenne
+        res = (double) somme / listNote.size();
+        return res;
     }
 
-    public double calculerMoyenneGenerale()throws Exception {
-
+    /**
+     * La méthode calculerMoyenneGenerale permet de calculer la moyenne
+     * générale d'un étudiant en prenant en compte les coefficients
+     * de chaque matière
+     *
+     * @return La moyenne générale de l'étudiant
+     */
+    public double calculerMoyenneGenerale() throws Exception {
         double sommeMoyennes = 0;
         int sommeCoefficients = 0;
-        for (String mat : resultat.keySet()) {
+
+        // On parcourt toutes les matières dans lesquelles l'étudiant a des notes
+        for (String mat : this.resultat.keySet()) {
+            // On calcule la moyenne de l'étudiant dans cette matière
             double moyenne = calculerMoyenne(mat);
+            // On récupère le coefficient de la matière
             int coefficient = formation.getCoeff(mat);
 
+            // On multiplie la moyenne par son coefficient et on ajoute le résultat
             sommeMoyennes += moyenne * coefficient;
+            // On ajoute le coefficient à la somme des coefficients
             sommeCoefficients += coefficient;
         }
 
+        // On vérifie que l'étudiant possède au moins une note
         if (sommeCoefficients == 0) {
             throw new Exception("L'étudiant n'a aucune note");
         }
@@ -95,11 +116,11 @@ public class Etudiant {
     }
 
     public Formation getFormation() {
-        return formation;
+        return this.formation;
     }
 
     public Identite getIdentite() {
-        return identite;
+        return this.identite;
     }
 
     public ArrayList<Integer> getNotes(String mat) throws MatiereInexistanteException {
@@ -108,6 +129,6 @@ public class Etudiant {
             throw new MatiereInexistanteException(mat);
         }
 
-        return resultat.get(mat);
+        return this.resultat.get(mat);
     }
 }
