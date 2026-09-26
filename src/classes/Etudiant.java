@@ -92,6 +92,7 @@ public class Etudiant {
      * @return La moyenne générale de l'étudiant
      */
     public double calculerMoyenneGenerale() throws Exception {
+        double res;
         double sommeMoyennes = 0;
         int sommeCoefficients = 0;
 
@@ -112,7 +113,8 @@ public class Etudiant {
         if (sommeCoefficients == 0) {
             throw new Exception("L'étudiant n'a aucune note");
         }
-        return sommeMoyennes / sommeCoefficients;
+        res = sommeMoyennes / sommeCoefficients;
+        return res;
     }
 
     public Formation getFormation() {
