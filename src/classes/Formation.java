@@ -25,7 +25,7 @@ public class Formation {
      */
     public void ajoutMatiere(String mat, int coeff){
         // Verifications de si matiere existe deja dans la collections
-        if (collections.containsKey(mat)){
+        if (matiereExiste(mat)){
             System.out.println("La matière existe déjà !");
             // Si oui renvoie un message
         } else{
@@ -40,7 +40,7 @@ public class Formation {
      */
     public void suppMatiere(String mat){
         // Verif si la matiere existe pas
-        if (!collections.containsKey(mat)){
+        if (!matiereExiste(mat)){
             System.out.println("La matière n'existe pas");
             // Si elle existe pas renvoie un message
         } else{
@@ -52,16 +52,22 @@ public class Formation {
     /**
      * Méthode permettant d'avoir le coefficient pour une matière
      * @param mat matière que l'on souhaite avoir son coefficient
-     * @return le coefficient de la matière, si elle existe pas retourner -1
+     * @return le coefficient de la matière, si elle existe pas retourne d'une exception
      */
-
-    // Vaut mieux Faire une exception
-    public int getCoeff(String mat){
-        if (!collections.containsKey(mat)){
-            return -1;
+    public int getCoeff(String mat) throws MatiereInexistanteException {
+        if (!matiereExiste(mat)){
+            // Exception si la matiere n'existe pas
+            throw new MatiereInexistanteException(mat);
         }
         return collections.get(mat);
     }
 
-    // METHODE QUI VERIFIE L'EXISTANCE D'UNE MATIERE
+    /**
+     * Méthode permettant de vérifier si une matière existe dans la formation
+     * @param mat matière que l'on souhaite vérifier
+     * @return true si la matière existe, false sinon
+     */
+    public boolean matiereExiste(String mat) {
+        return collections.containsKey(mat);
+    }
 }
