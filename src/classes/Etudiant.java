@@ -101,4 +101,13 @@ public class Etudiant {
     public Identite getIdentite() {
         return identite;
     }
+
+    public ArrayList<Integer> getNotes(String mat) throws MatiereInexistanteException {
+
+        if (!formation.matiereExiste(mat)) {
+            throw new MatiereInexistanteException(mat);
+        }
+
+        return resultat.get(mat);
+    }
 }
