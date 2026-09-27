@@ -72,4 +72,52 @@ public class Formation {
     public boolean matiereExiste(String mat) {
         return collections.containsKey(mat);
     }
+
+    /**
+     * Methode permettant de verifier si la formation est egale a la formation passé en parametre
+     * @param obj reference de l'objet que l'on souhaite compare
+     * @return true si les deux formations sont égales, false sinon
+     */
+    @Override
+    public boolean equals(Object obj) {
+        // On verifie si l'objet passé en parametre a la meme reference que la formation
+        if (this == obj) {
+            return true;
+        }
+        // On verifie si l'objet en parametre n'est pas null ou net pas de la meme nature quel l'autre objet
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        // On transforme l'objet en Formation
+        Formation formation = (Formation) obj;
+        // On compare l'identifiant
+        if (this.id != formation.id) {
+            return false;
+        }
+        // On compare les matieres
+        if (!this.collections.equals(formation.collections)) {
+            return false;
+        }
+        // Enfin on est sur que c'est le même donc on return true
+        return true;
+    }
+
+    /**
+     * Méthode permettant de générer le hashCode d'une formation
+     * à partir de son identifiant et de sa collection de matières
+     * @return le hashCode de la formation
+     */
+     @Override
+     public int hashCode() {
+         // On initialise avec un nombre premier
+         int resultat = 13;
+
+         // On ajoute l'identifiant de la formation
+         resultat = 13 * resultat + id;
+
+         // On ajoute le hashCode de la collection de matières
+         resultat = 13 * resultat + collections.hashCode();
+
+         return resultat;
+     }
 }
