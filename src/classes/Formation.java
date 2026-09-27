@@ -23,7 +23,10 @@ public class Formation {
      * @param mat nom de la matiere que l'on souhaite ajoute
      * @param coeff coefficient de la matiere qu'on veut ajouter
      */
-    public void ajoutMatiere(String mat, int coeff){
+    public void ajoutMatiere(String mat, int coeff) throws CoefficientInvalideException{
+        if (coeff < 0){
+            throw new CoefficientInvalideException(coeff);
+        }
         // Verifications de si matiere existe deja dans la collections
         if (matiereExiste(mat)){
             System.out.println("La matière existe déjà !");
@@ -38,15 +41,14 @@ public class Formation {
      * Méthode suppMatiere permettant de supprimer une matiere de la collections
      * @param mat matière que l'on souhaite supprimer
      */
-    public void suppMatiere(String mat){
+    public void suppMatiere(String mat) throws MatiereInexistanteException{
         // Verif si la matiere existe pas
         if (!matiereExiste(mat)){
-            System.out.println("La matière n'existe pas");
+            throw new MatiereInexistanteException(mat);
             // Si elle existe pas renvoie un message
-        } else{
-            collections.remove(mat);
-            // Suppression de la matiere
         }
+        collections.remove(mat);
+        // Suppression de la matiere
     }
 
     /**
