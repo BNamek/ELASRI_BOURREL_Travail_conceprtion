@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Groupe {
@@ -61,4 +62,41 @@ public class Groupe {
         }
     }
 
+    /**
+     * Methode permettant de tier les etudiants de manière alphabetique (A-Z)
+     */
+    public void triAlpha(){
+        // Collections.sort permet de trier une liste
+        // Ici, on trie la liste des etudiants
+        // en utilisant les règles définies dans EtudiantComparator
+        Collections.sort(this.etudiants, new EtudiantComparator());
+    }
+
+    /**
+     * Methode permettant de tier les etudiants de manière alphabetique inverse (Z-A)
+     */
+    public void triAntiAlpha(){
+        // On trie d'abord la liste des etudiants par ordre alphabetique
+        // grâce aux règles définies dans EtudiantComparator
+        Collections.sort(this.etudiants, new EtudiantComparator());
+        // On inverse ensuite l'ordre de la liste
+        // pour obtenir un tri de Z vers A
+        Collections.reverse(this.etudiants);
+    }
+
+    /**
+     * Getter permettant d'avoir la liste d'etudiant du group
+     * @return la liste d'etudiant
+     */
+    public List<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    /**
+     * Getter permettant d'obtenir la formation du groupe
+     * @return la formaation du groupe
+     */
+    public Formation getFormation() {
+        return formation;
+    }
 }

@@ -2,6 +2,6 @@ package classes;
 
 public class FormationDifferenteException extends Exception {
     public FormationDifferenteException(){
-        super("La formation eest differente");
+        super("La formation est differente");
     }
 }
