@@ -10,7 +10,6 @@ public class Etudiant {
 
     /**
      * Creation d'un constructeur qui intialise un étudiant
-     *
      * @param id Initialisation de l'identiter d'un étudiant donc crée son identité avant de crée l'étudiant
      * @param f  Initialisation de la formation auquel l'étudiant apartient
      */
@@ -20,6 +19,11 @@ public class Etudiant {
         this.resultat = new HashMap<String, ArrayList<Integer>>();
     }
 
+    /**
+     * Méthode qui ajoute une note selon la matiere
+     * @param mat La matiere a laquelle on veux ajouter une note
+     * @param note Une note situer entre 0 et 20 inclus
+     */
     public void ajouterNote(String mat, int note) throws MatiereInexistanteException, Exception {
         //Je vérifie que la matière éxiste
         //Changement de return, car la méthode vas throw une exception
@@ -55,7 +59,6 @@ public class Etudiant {
 
     /**
      * La méthode calculerMoyenne permet de calculer la moyenne d'un etudiant dans une matière donnée
-     *
      * @param mat La matière dans laquelle on veux la moyenne de l'etudiant
      * @return Un double qui est la moyenne de l'étudiant dans la matière donné
      */
@@ -88,7 +91,6 @@ public class Etudiant {
      * La méthode calculerMoyenneGenerale permet de calculer la moyenne
      * générale d'un étudiant en prenant en compte les coefficients
      * de chaque matière
-     *
      * @return La moyenne générale de l'étudiant
      */
     public double calculerMoyenneGenerale() throws Exception {
