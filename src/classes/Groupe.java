@@ -44,7 +44,21 @@ public class Groupe {
         //Sinon on ne fait rien
     }
 
-
-
+    /**
+     * Methode permettant de supprimer une etudiant du groupe
+     * @param e etudiant que l'on souhaite supprimer
+     */
+    public void supprimerEtudiant(Etudiant e){
+        // On parcourt les Etudiant du groupe
+        for (int i=0 ; i<this.etudiants.size(); i++){
+            // On verifie si letudiant que l'on souhaite a le meme Nip
+            if (this.etudiants.get(i).getIdentite().getNip() == e.getIdentite().getNip()){
+                // Si on trouve l'étudiant, on le supprime de la liste
+                this.etudiants.remove(i);
+                // Puis on met fin a la methode
+                return;
+            }
+        }
+    }
 
 }
