@@ -71,19 +71,19 @@ public class Etudiant {
         }
 
         //On crée une liste qui va contenire les notes de la matière
-        ArrayList<Integer> listNote = this.resultat.get(mat);
-        if (listNote.isEmpty()) {
+        ArrayList<Integer> listeNote = this.resultat.get(mat);
+        if (listeNote == null || listeNote.isEmpty()) {
             //Si la liste est vide alors on throw une exception
             throw new Exception("L'étudiant n'a aucune note dans cette matière");
         }
         int somme = 0;
         //Une boucle for pour parcourir la liste est l'ajouter dans la somme de toute les notes
-        for (int i = 0; i < listNote.size(); i++) {
-            somme += listNote.get(i);
+        for (int i = 0; i < listeNote.size(); i++) {
+            somme += listeNote.get(i);
         }
 
         //On réalise le calcule de la moyenne
-        res = (double) somme / listNote.size();
+        res = (double) somme / listeNote.size();
         return res;
     }
 
