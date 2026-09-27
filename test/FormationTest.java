@@ -1,3 +1,4 @@
+import classes.CoefficientInvalideException;
 import classes.Formation;
 import classes.MatiereInexistanteException;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ public class FormationTest {
 
     //Ajout d'une matière dans la collection, avec tout les attributs requis
     @Test
-    public void test_Ajout_Matiere() {
+    public void test_Ajout_Matiere() throws CoefficientInvalideException {
         //Création d'une formaiton
         Formation f = new Formation(1);
         //Ajouter la matiere et sont coefficient
@@ -33,15 +34,15 @@ public class FormationTest {
             //Sur la documentation de JUnit5 il y'a la méthode fail qui permet de rendre un test faux si le resultat attendue
             //n'est pas le bon ici c'est que l'exception n'a pas etait lever
             fail("L'exception n'a pas etait lever");
-        } catch (Exception e) {
-            assertEquals("Le coeff doit etre positif", e.getMessage());
+        } catch (CoefficientInvalideException c) {
+            assertEquals("Le coefficient -1 ne peut pas être négatif.", c.getMessage());
         }
 
     }
 
     //Ajout d'une matiere qui est déja dans la collection
     @Test
-    public void test_Ajout_Matiere_Existante() throws MatiereInexistanteException {
+    public void test_Ajout_Matiere_Existante() throws MatiereInexistanteException, CoefficientInvalideException {
         //Création d'une formaiton
         Formation f = new Formation(1);
 
@@ -56,7 +57,7 @@ public class FormationTest {
 
     //Tester la suppression d'une matiere qui existe donc le fonctionnement normal de la méthode
     @Test
-    public void test_Suppression_Matiere_Existante(){
+    public void test_Suppression_Matiere_Existante() throws CoefficientInvalideException, MatiereInexistanteException {
         //Création d'une formaiton
         Formation f = new Formation(1);
 
@@ -85,6 +86,12 @@ public class FormationTest {
         //Création d'une formaiton
         Formation f = new Formation(1);
 
+        try {
+            f.suppMatiere("test");
+        } catch (MatiereInexistanteException m) {
+            //On verifie que la matiere n'existe plus dans la collection
+            assertEquals("La matière test n'existe pas.",m.getMessage());
+        }
 
     }
 }
