@@ -1,5 +1,7 @@
-package classes;
-
+import classes.Etudiant;
+import classes.Formation;
+import classes.Groupe;
+import classes.Identite;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
