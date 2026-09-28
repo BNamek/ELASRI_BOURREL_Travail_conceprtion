@@ -120,4 +120,12 @@ public class Formation {
 
          return resultat;
      }
+
+    /**
+     * Méthode qui permet de retourner la hashmap
+     * @return une hashmap
+     */
+     public HashMap<String, Integer> getCollections(){
+         return this.collections;
+     }
 }
