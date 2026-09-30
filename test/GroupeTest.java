@@ -119,4 +119,48 @@ public class GroupeTest {
         assertEquals("Ba", g.getEtudiants().get(1).getIdentite().getNom(), "Le nom du deuxieme etudiant devrait etre Ba");
         assertEquals("Aa", g.getEtudiants().get(2).getIdentite().getNom(), "Le nom du troisieme etudiant devrait etre Aa");
     }
+
+    // Test de la methode triParMerite
+    @Test
+    public void test_TriParMerite() throws Exception {
+
+        // Creation d'une formation
+        Formation f = new Formation(1);
+
+        // Ajout d'une matiere dans la formation
+        f.ajoutMatiere("Math", 1);
+
+        // Creation de trois identites
+        Identite id1 = new Identite(1, "Bourrel", "Robin");
+        Identite id2 = new Identite(2, "Martin", "Paul");
+        Identite id3 = new Identite(3, "Durand", "Lucas");
+
+        // Creation de trois etudiants
+        Etudiant e1 = new Etudiant(id1, f);
+        Etudiant e2 = new Etudiant(id2, f);
+        Etudiant e3 = new Etudiant(id3, f);
+
+        // Ajout des notes
+        e1.ajouterNote("Math", 10);
+        e2.ajouterNote("Math", 18);
+        e3.ajouterNote("Math", 14);
+
+        // Creation du groupe
+        Groupe g = new Groupe(f);
+
+        // Ajout des trois etudiants
+        g.ajouterEtudiant(e1);
+        g.ajouterEtudiant(e2);
+        g.ajouterEtudiant(e3);
+
+        // Lancement du tri par merite
+        g.triParMerite();
+
+        // Verification de l'ordre
+        assertEquals(2, g.getEtudiants().get(0).getIdentite().getNip(), "L'etudiant avec la meilleure moyenne doit etre premier");
+
+        assertEquals(3, g.getEtudiants().get(1).getIdentite().getNip(), "L'etudiant avec la deuxieme meilleure moyenne doit etre deuxieme");
+
+        assertEquals(1, g.getEtudiants().get(2).getIdentite().getNip(), "L'etudiant avec la moyenne la plus faible doit etre dernier");
+    }
 }
