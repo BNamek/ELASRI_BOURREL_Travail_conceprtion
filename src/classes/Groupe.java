@@ -157,4 +157,28 @@ public class Groupe {
         return Math.round(moy);
     }
 
+    /**
+     * Méthode permettant de trier la liste d'etudiant par merite
+     * c'est a dire de l'eleve avec la meilleure moyenne à leleve qui a la pire moyenne
+     * @throws Exception
+     */
+    public void triParMerite() throws Exception {
+        // Boucle permettant de parcourir la liste d'etudiants
+        for (int i = 0; i < this.etudiants.size() - 1; i++) {
+            for (int j = i + 1; j < this.etudiants.size(); j++) {
+                // On recupere deux etudiants
+                double moyenne1 = this.etudiants.get(i).calculerMoyenneGenerale();
+                double moyenne2 = this.etudiants.get(j).calculerMoyenneGenerale();
+
+                // On compare leur moyenne
+                if (moyenne2 > moyenne1) {
+                    // On les changes de places
+                    Etudiant temp = this.etudiants.get(i);
+                    this.etudiants.set(i, this.etudiants.get(j));
+                    this.etudiants.set(j, temp);
+                }
+            }
+        }
+    }
+
 }
